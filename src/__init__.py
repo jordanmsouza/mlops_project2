@@ -1,6 +1,13 @@
 import logging
+import dagshub
 from dotenv import load_dotenv
 
+
+# Initialize DagsHub with credentials
+dagshub.init(
+	repo_owner='jordanmsouza',
+	repo_name='mlops_project2'
+)
 # Load environment variables from .env file
 load_dotenv()  
 
