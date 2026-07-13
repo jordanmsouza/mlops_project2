@@ -64,6 +64,9 @@ def save_artifacts(
     """
     # Save processed data
     output_dir = "data/processed"
+    artifacts_dir = "artifacts"
+    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(artifacts_dir, exist_ok=True)
     logger.info(f"Saving engineered features to {output_dir}")
 
     train_path = os.path.join(output_dir, "train_processed.csv")
@@ -73,7 +76,7 @@ def save_artifacts(
     test_processed.to_csv(test_path, index=False)
 
     # Save scaler
-    scaler_path = os.path.join("artifacts", "[features]_scaler.joblib")
+    scaler_path = os.path.join(artifacts_dir, "[features]_scaler.joblib")
     logger.info(f"Saving scaler to {scaler_path}")
     joblib.dump(scaler, scaler_path)
 

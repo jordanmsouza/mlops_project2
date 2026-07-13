@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 
 import numpy as np
@@ -42,6 +43,7 @@ def save_data(data: pd.DataFrame) -> None:
         data (pd.DataFrame): Raw breast cancer dataset to save
     """
     output_path = "data/raw/raw.csv"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     logger.info(f"Saving raw data to {output_path}")
     data.to_csv(output_path, index=False)
 

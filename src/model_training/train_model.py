@@ -112,6 +112,8 @@ def save_training_artifacts(model: tf.keras.Model, encoder: OneHotEncoder) -> No
     """
     artifacts_dir = "artifacts"
     models_dir = "models"
+    os.makedirs(artifacts_dir, exist_ok=True)
+    os.makedirs(models_dir, exist_ok=True)
     model_path = os.path.join(models_dir, "model.keras")
     encoder_path = os.path.join(artifacts_dir, "[target]_one_hot_encoder.joblib")
 
@@ -205,6 +207,7 @@ def train_model(train_data: pd.DataFrame, params: dict[str, int | float]) -> Non
             for metric in history.history
         }
         metrics_path = "metrics/training.json"
+        os.makedirs(os.path.dirname(metrics_path), exist_ok=True)
         with open(metrics_path, "w") as f:
             json.dump(metrics, f, indent=2)
             

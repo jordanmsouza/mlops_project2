@@ -102,6 +102,9 @@ def save_artifacts(
     """
     # Save processed data
     data_dir = "data/preprocessed"
+    artifacts_dir = "artifacts"
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(artifacts_dir, exist_ok=True)
     logger.info(f"Saving processed data to {data_dir}")
 
     train_path = os.path.join(data_dir, "train_preprocessed.csv")
@@ -111,7 +114,7 @@ def save_artifacts(
     test_data.to_csv(test_path, index=False)
 
     # Save imputer
-    imputer_path = os.path.join("artifacts", "[features]_mean_imputer.joblib")
+    imputer_path = os.path.join(artifacts_dir, "[features]_mean_imputer.joblib")
     logger.info(f"Saving imputer to {imputer_path}")
     joblib.dump(imputer, imputer_path)
 

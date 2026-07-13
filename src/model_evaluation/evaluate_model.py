@@ -84,6 +84,7 @@ def evaluate_model(
         # Log metrics to DVC
         logger.info(f"Classification Report:\n{classification_report(y_true, y_pred)}")
         evaluation_path = "metrics/evaluation.json"
+        os.makedirs(os.path.dirname(evaluation_path), exist_ok=True)
         with open(evaluation_path, "w") as f:
             json.dump(evaluation, f, indent=2)
             
